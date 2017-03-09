@@ -4,5 +4,6 @@ vendor
 storage/
 tests/
 public/uploads/
+config/session.php
 app/Api/ApiUser/ApiBase.php
 app/Api/ApiTalk/ApiBase.php
