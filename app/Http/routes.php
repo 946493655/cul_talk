@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+/**
+ * 前台页面
+ */
+Route::group(['prefix'=>'/','namespace'=>'Home'], function(){
+    Route::get('/', 'HomeController@index');
 });

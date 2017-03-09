@@ -1,3 +1,8 @@
-/vendor
+vendor
 .env
 .idea/
+storage/
+tests/
+public/uploads/
+app/Api/ApiUser/ApiBase.php
+app/Api/ApiTalk/ApiBase.php

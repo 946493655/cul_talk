@@ -11,10 +11,4 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
-
-    public function __construct()
-    {
-        define('DOMAIN',env('DOMAIN'));
-        define('PUB',env('PUB'));
-    }
 }
