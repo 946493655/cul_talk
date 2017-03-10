@@ -37,6 +37,37 @@ body { margin:0;margin:0;font-family:'微软雅黑'; }
 
 /**
  ***********************
+ *
+ */
+#top {
+    margin:0 auto;
+    padding:5px 0;
+    width:1000px;
+}
+#logoText {
+    margin-left:10px;
+    color:#e6e6e6;
+    font-size:20px;
+    position:absolute; top:40px;
+}
+#fabu {
+    margin-top:10px;
+    float:right;
+}
+#fabu a {
+    padding:5px 50px;
+    background:#ff4466;
+    color:#ffffff;
+    text-decoration:none;
+}
+/**
+ *
+ ***********************
+ */
+
+
+/**
+ ***********************
  * 横条菜单样式
  */
 #nav { background:#5a5a5a; }
@@ -50,7 +81,7 @@ body { margin:0;margin:0;font-family:'微软雅黑'; }
     color:#ffffff;
     text-decoration:none;
 }
-#nav a:hover {
+#nav a:hover,#nav_center a.curr {
     background:#ff4466;
 }
 /**

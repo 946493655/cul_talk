@@ -21,4 +21,5 @@
  */
 Route::group(['prefix'=>'/','namespace'=>'Home'], function(){
     Route::get('/', 'HomeController@index');
+    Route::resource('topic/{id}', 'TopicController');
 });

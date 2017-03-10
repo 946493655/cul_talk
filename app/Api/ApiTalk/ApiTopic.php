@@ -28,4 +28,25 @@ class ApiTopic
             'pagelist' => ApiBase::objToArr($response->pagelist),
         );
     }
+
+    /**
+     * 通过 limit 获取记录
+     */
+    public static function getTopicsByLimit($limit)
+    {
+        $apiUrl = ApiBase::getApiCurl() . '/api/v1/topic/topicsbylimit';
+        $curl = new Curl();
+        $curl->setHeader('X-Authorization', ApiBase::getApiKey());
+        $curl->post($apiUrl, array(
+            'limit' =>  $limit,
+        ));
+        $response = json_decode($curl->response);
+        if ($response->error->code != 0) {
+            return array('code' => -1, 'msg' => $response->error->msg);
+        }
+        return array(
+            'code' => 0,
+            'data' => ApiBase::objToArr($response->data),
+        );
+    }
 }
