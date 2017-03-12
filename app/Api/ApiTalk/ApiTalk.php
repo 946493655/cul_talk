@@ -3,20 +3,22 @@ namespace App\Api\ApiTalk;
 
 use Curl\Curl;
 
-class ApiCate
+class ApiTalk
 {
     /**
-     * 类别接口
+     * 话题接口
      */
 
-    public static function getCatesByLimit($limit,$topic_id)
+    public static function index($limit,$pageCurr=1,$topic=0,$cate=0)
     {
-        $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate/catesbylimit';
+        $apiUrl = ApiBase::getApiCurl() . '/api/v1/talk';
         $curl = new Curl();
         $curl->setHeader('X-Authorization', ApiBase::getApiKey());
         $curl->post($apiUrl, array(
             'limit' =>  $limit,
-            'topic_id'  =>  $topic_id,
+            'page'  =>  $pageCurr,
+            'topic' =>  $topic,
+            'cate'  =>  $cate,
         ));
         $response = json_decode($curl->response);
         if ($response->error->code != 0) {
@@ -25,33 +27,13 @@ class ApiCate
         return array(
             'code' => 0,
             'data' => ApiBase::objToArr($response->data),
-        );
-    }
-
-    /**
-     * 通过 topic_id 获取所有父子类别
-     */
-    public static function getCatesByPid($pid)
-    {
-        $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate/catesbypid';
-        $curl = new Curl();
-        $curl->setHeader('X-Authorization', ApiBase::getApiKey());
-        $curl->post($apiUrl, array(
-            'pid'  =>  $pid,
-        ));
-        $response = json_decode($curl->response);
-        if ($response->error->code != 0) {
-            return array('code' => -1, 'msg' => $response->error->msg);
-        }
-        return array(
-            'code' => 0,
-            'data' => ApiBase::objToArr($response->data),
+            'pagelist' => ApiBase::objToArr($response->pagelist),
         );
     }
 
     public static function add($data)
     {
-        $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate/add';
+        $apiUrl = ApiBase::getApiCurl() . '/api/v1/talk/add';
         $curl = new Curl();
         $curl->setHeader('X-Authorization', ApiBase::getApiKey());
         $curl->post($apiUrl, $data);
@@ -67,7 +49,7 @@ class ApiCate
 
     public static function modify($data)
     {
-        $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate/modify';
+        $apiUrl = ApiBase::getApiCurl() . '/api/v1/talk/modify';
         $curl = new Curl();
         $curl->setHeader('X-Authorization', ApiBase::getApiKey());
         $curl->post($apiUrl, $data);

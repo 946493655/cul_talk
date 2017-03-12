@@ -10,9 +10,7 @@
 <body>
 @include('layout.header')
 
-<div class="online_bg">
-    @yield('content')
-</div>
+@yield('content')
 
 @include('layout.footer')
 </body>
