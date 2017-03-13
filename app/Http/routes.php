@@ -30,17 +30,23 @@ Route::group(['prefix'=>'login'], function(){
  * 前台页面
  */
 Route::group(['prefix'=>'/','namespace'=>'Home'], function(){
+    //首页、几个列表路由
     Route::get('/', 'HomeController@index');
-    //具体列表
-    Route::get('free', 'HomeController@getFree');
-    Route::get('graph', 'HomeController@getGraph');
-    Route::get('video', 'HomeController@getVideo');
-    Route::get('design', 'HomeController@getDesign');
-    Route::get('track', 'HomeController@getTrack');
-    Route::get('t/{topic_id}', 'HomeController@show');
+    Route::get('s/{topic}', 'HomeController@show');         //s是代表检索
+    Route::get('s/{topic}/{cate}', 'HomeController@show');
+    Route::resource('topic', 'TopicController');
     //话题路由
-    Route::get('topic/talk', 'TalkController@getTopic');
+    Route::get('talk/topic', 'TalkController@getTopic');
     Route::group(['prefix'=>'t/{topic_id}'], function(){
         Route::resource('talk', 'TalkController');
     });
+});
+
+
+/**
+ * 会员页面
+ */
+Route::group(['prefix'=>'/','middleware' =>'MemberAuth','namespace'=>'Home'], function(){
+    //用户信息
+    Route::get('account', 'UserController@index');
 });

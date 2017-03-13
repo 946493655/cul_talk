@@ -110,6 +110,7 @@ body { margin:0;font-family:'微软雅黑'; }
     border:1px solid #dcdcdc;
     background:#ffffff;
     float:left;
+    position:relative;
 }
 .box .title {
     margin:10px;
@@ -136,14 +137,17 @@ body { margin:0;font-family:'微软雅黑'; }
     padding:10px; padding-bottom:20px;
 }
 .box .nav .cate {
-    width:75px;
+    width:75px; height:25px;
+    overflow:hidden;
     float:left;
 }
 .box .cont {
     padding:10px; padding-bottom:50px;
+    overflow:hidden;
 }
 .box .cont .talk {
-    width:75px;
+    width:75px; height:25px;
+    overflow:hidden;
     float:left;
 }
 /*前台showcate页面*/
@@ -179,35 +183,39 @@ body { margin:0;font-family:'微软雅黑'; }
     font-size:15px;
 }
 #contain_center .showcate ul a:hover { color:#ff4466; }
-#contain_center .list {
-    margin:15px 0;
-    padding:10px;
-    background:#ffffff;
-}
 /*前台showlist*/
 #contain_center .list {
+    margin:15px 0;
     padding:20px;
+    background:#ffffff;
+}
+#contain_center .list p.crumb {
+    margin:0; margin-bottom:10px;
+    padding-left:5px;
+    color:#808080;
+    border-left:4px solid pink;
+    font-size:12px;
 }
 #contain_center .list table {
     margin:0;
     width:100%;
     height:60px;
 }
-#contain_center .list td { padding:10px; }
+#contain_center .list td { padding:10px 20px; }
+#contain_center .list td.tname {
+    padding-bottom:10px;
+    font-size:25px;
+}
 #contain_center .list td.img {
-    width:50px; height:50px;
+    width:100px; height:50px;
     background:#f2f2f2;
     overflow:hidden;
-}
-#contain_center .list table p { margin:0; }
-#contain_center .list td.intro {
-    padding:0 20px;
-    width:50%;
 }
 #contain_center .list td.xian {
     padding-bottom:10px;
     border-top:1px solid #e5e5e5;
 }
+#contain_center .list table p { margin:0; }
 /**
  ***********************
  * 前台首页内容样式
@@ -221,10 +229,8 @@ body { margin:0;font-family:'微软雅黑'; }
 #contain_center .topicflow {
     margin-bottom:10px;
     margin-right:10px;
-    padding:20px 0;
+    padding:50px 0;
     width:324px;
-    height:100px;
-    line-height:100px;
     text-align:center;
     font-size:30px;
     color:#808080;
@@ -235,6 +241,10 @@ body { margin:0;font-family:'微软雅黑'; }
 #contain_center a:hover .topicflow {
     color:#ff4466;
     border:4px solid #ff4466;
+}
+#contain_center .topicflow .small {
+    font-size:14px;
+    color:#808080;
 }
 #contain_center form {
     padding:20px 50px;
@@ -250,7 +260,7 @@ body { margin:0;font-family:'微软雅黑'; }
 }
 #contain_center a:hover { color:#ff4466; }
 #contain_center form p { margin:0; }
-#contain_center form p#return {
+#contain_center p#return {
     padding-bottom:20px;
     cursor:pointer;
 }
@@ -277,4 +287,24 @@ body { margin:0;font-family:'微软雅黑'; }
 /**
  ***********************
  * 前台专栏选择样式
+ */
+
+
+/**
+ * 用户页面样式
+ ***********************
+ */
+#userlist {
+    padding:20px;
+    background:#ffffff;
+}
+#userlist table {
+    margin:auto;
+    width:800px;
+    color:#808080;
+}
+#userlist td { padding:10px 0; }
+/**
+ ***********************
+ * 用户页面样式
  */

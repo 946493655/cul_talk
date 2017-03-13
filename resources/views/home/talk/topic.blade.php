@@ -15,9 +15,9 @@
             </a>
                 @endforeach
             @endif
-            <a href="javascript:;" title="添加新专栏">
-                <div class="topicflow">专栏添加</div>
-            </a>
+            {{--<a href="javascript:;" title="添加新专栏">--}}
+                {{--<div class="topicflow">专栏添加</div>--}}
+            {{--</a>--}}
         </div>
     </div>
 @stop

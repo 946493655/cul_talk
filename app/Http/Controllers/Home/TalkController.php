@@ -13,17 +13,16 @@ class TalkController extends BaseController
      * 话题
      */
 
-    public function index()
-    {
-        return view('home.talk.index');
-    }
+//    public function index()
+//    {
+//        return view('home.talk.index');
+//    }
 
     /**
      * 专栏选择
      */
     public function getTopic()
     {
-        if (!Session::has('user')) { return redirect(DOMAIN.'login'); }
         $apiTopic = ApiTopic::getTopicsByLimit(1000);
         if ($apiTopic['code']!=0) {
             echo "<script>alert('".$apiTopic['msg']."');history.go(-1);</script>";exit;
@@ -37,6 +36,11 @@ class TalkController extends BaseController
     public function create($topic)
     {
         if (!Session::has('user')) { return redirect(DOMAIN.'login'); }
+        //限制每个用户每天发布的数量
+        $apiTalk = ApiTalk::index($this->limit,1,0,0);
+        if ($apiTalk['code']==0 && count($apiTalk['data'])>=5) {
+            echo "<script>alert('今天的发布已达上限！');history.go(-1);</script>";exit;
+        }
         $result = [
             'cates' => $this->getCates($topic),
             'topic' => $topic,
@@ -59,6 +63,8 @@ class TalkController extends BaseController
         if ($apiTalk['code']!=0) {
             echo "<script>alert('".$apiTalk['msg']."');history.go(-1);</script>";exit;
         }
+        //去奖励
+        //??
         return redirect(DOMAIN);
     }
 

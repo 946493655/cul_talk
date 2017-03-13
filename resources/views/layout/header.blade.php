@@ -4,9 +4,10 @@
     <div id="header_center">
         <span class="left">
             @if(!Session::has('user'))
-            <a href="{{DOMAIN}}login">用户登陆</a>
+                <a href="{{DOMAIN}}login">用户登陆</a>
             @else
-            <a href="javascript:;">会员名：{{Session::get('user.username')}}</a>
+                <a href="{{DOMAIN}}account">会员名：{{Session::get('user.username')}}</a>
+                &nbsp; <a href="{{DOMAIN}}login/logout">用户退出</a>
             @endif
         </span>
         <span class="right">
