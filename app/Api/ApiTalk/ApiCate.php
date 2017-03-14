@@ -9,17 +9,16 @@ class ApiCate
      * 类别接口
      */
 
-    /**
-     * 通过 topic_id、limit 获取列表
-     */
-    public static function getCatesByLimit($limit,$topic_id)
+    public static function index($limit,$pageCurr=1,$topic_id,$uid=0)
     {
-        $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate/catesbylimit';
+        $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate';
         $curl = new Curl();
         $curl->setHeader('X-Authorization', ApiBase::getApiKey());
         $curl->post($apiUrl, array(
             'limit' =>  $limit,
+            'page'  =>  $pageCurr,
             'topic_id'  =>  $topic_id,
+            'uid'   =>  $uid,
         ));
         $response = json_decode($curl->response);
         if ($response->error->code != 0) {
@@ -28,6 +27,7 @@ class ApiCate
         return array(
             'code' => 0,
             'data' => ApiBase::objToArr($response->data),
+            'pagelist' => ApiBase::objToArr($response->pagelist),
         );
     }
 
@@ -74,9 +74,6 @@ class ApiCate
         );
     }
 
-    /**
-     * 通过 id 获取pid
-     */
     public static function show($id)
     {
         $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate/show';

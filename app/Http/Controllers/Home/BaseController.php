@@ -25,7 +25,7 @@ class BaseController extends Controller
      */
     public function getNavigates()
     {
-        $apiNav = ApiTopic::getTopicsByLimit(5);
+        $apiNav = ApiTopic::index(5);
         return $apiNav['code']==0 ? $apiNav['data'] : [];
     }
 

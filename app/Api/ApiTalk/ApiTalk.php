@@ -9,7 +9,7 @@ class ApiTalk
      * 话题接口
      */
 
-    public static function index($limit,$pageCurr=1,$topic=0,$cate=0)
+    public static function index($limit,$pageCurr=1,$topic=0,$cate=0,$uid=0)
     {
         $apiUrl = ApiBase::getApiCurl() . '/api/v1/talk';
         $curl = new Curl();
@@ -19,6 +19,7 @@ class ApiTalk
             'page'  =>  $pageCurr,
             'topic' =>  $topic,
             'cate'  =>  $cate,
+            'uid'   =>  $uid,
         ));
         $response = json_decode($curl->response);
         if ($response->error->code != 0) {

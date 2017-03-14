@@ -10,7 +10,7 @@ use App\Api\ApiTalk\ApiCate;
 //通过topic，获取类别
 function CateByTopicid($limit,$topic_id)
 {
-    $apiCate = ApiCate::getCatesByLimit($limit,$topic_id);
+    $apiCate = ApiCate::index($limit,$topic_id,0);
     return $apiCate['code']==0 ? $apiCate['data'] : [];
 }
 

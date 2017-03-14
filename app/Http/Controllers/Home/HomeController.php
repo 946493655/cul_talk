@@ -22,7 +22,7 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        $apiTopic = ApiTopic::getTopicsByLimit(100);
+        $apiTopic = ApiTopic::index(10,1,0);
         if ($apiTopic['code']!=0) {
             echo "<script>alert('".$apiTopic['msg']."');history.go(-1);</script>";exit;
         }
@@ -78,7 +78,7 @@ class HomeController extends BaseController
      */
     public function getCates($limit,$topic)
     {
-        $apiCate = ApiCate::getCatesByLimit($limit,$topic);
+        $apiCate = ApiCate::index($limit,1,$topic,0);
         return $apiCate['code']==0 ? $apiCate['data'] : [];
     }
 

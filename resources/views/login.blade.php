@@ -6,8 +6,10 @@
     <link rel="icon" type="image/png" href="{{PUB}}assets/images/icon.png">
     <link rel="stylesheet" type="text/css" href="{{PUB}}assets/css/home.css">
     <style>
-        .login { padding:20px 100px;width:300px;border:1px solid lightgrey;border-radius:5px;box-shadow:0 0 5px lightgrey;
+        .login { padding:20px 100px;width:300px;
+            border:1px solid lightgrey;border-radius:5px;box-shadow:0 0 5px lightgrey;
             position:fixed;left:30%;top:200px;  }
+        .login h3 { text-align:center;color:#808080; }
         .login input { text-align:center; }
         .login_div { padding:5px; }
         .login_div input { padding:5px;width:280px;border:0;border-bottom:1px solid lightgrey;
@@ -21,6 +23,7 @@
 @include('layout.header')
 
 <div class="login">
+    <h3>交流之地也</h3>
     <form action="{{DOMAIN}}login/dologin" method="POST" data-am-validator>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="login_div login_first"><input type="text" placeholder="用户名\手机" minlength="2" maxlength="20" name="username" required></div>

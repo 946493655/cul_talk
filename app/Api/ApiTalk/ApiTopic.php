@@ -9,7 +9,7 @@ class ApiTopic
      * 专栏接口
      */
 
-    public static function index($limit,$pageCurr=1)
+    public static function index($limit,$pageCurr=1,$uid=0)
     {
         $apiUrl = ApiBase::getApiCurl() . '/api/v1/topic';
         $curl = new Curl();
@@ -17,6 +17,7 @@ class ApiTopic
         $curl->post($apiUrl, array(
             'limit' =>  $limit,
             'page'  =>  $pageCurr,
+            'uid'   =>  $uid,
         ));
         $response = json_decode($curl->response);
         if ($response->error->code != 0) {
@@ -26,27 +27,6 @@ class ApiTopic
             'code' => 0,
             'data' => ApiBase::objToArr($response->data),
             'pagelist' => ApiBase::objToArr($response->pagelist),
-        );
-    }
-
-    /**
-     * 通过 limit 获取记录
-     */
-    public static function getTopicsByLimit($limit)
-    {
-        $apiUrl = ApiBase::getApiCurl() . '/api/v1/topic/topicsbylimit';
-        $curl = new Curl();
-        $curl->setHeader('X-Authorization', ApiBase::getApiKey());
-        $curl->post($apiUrl, array(
-            'limit' =>  $limit,
-        ));
-        $response = json_decode($curl->response);
-        if ($response->error->code != 0) {
-            return array('code' => -1, 'msg' => $response->error->msg);
-        }
-        return array(
-            'code' => 0,
-            'data' => ApiBase::objToArr($response->data),
         );
     }
 
