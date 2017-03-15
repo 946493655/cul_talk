@@ -54,6 +54,7 @@ class ApiCate
 
     /**
      * 通过 topic 获取二级类别
+     * level：1顶级，2二级
      */
     public static function getCatesByTopic($topic_id,$level=2)
     {

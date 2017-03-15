@@ -35,6 +35,11 @@ Route::group(['prefix'=>'/','namespace'=>'Home'], function(){
     Route::get('s/{topic}', 'HomeController@show');         //s是代表检索
     Route::get('s/{topic}/{cate}', 'HomeController@show');
     Route::resource('topic', 'TopicController');
+    //类别路由
+    Route::group(['prefix'=>'s/{topic_id}'], function(){
+        Route::post('cate/getcates', 'CateController@getCatesByTopic');
+        Route::resource('cate', 'CateController');
+    });
     //话题路由
     Route::get('talk/topic', 'TalkController@getTopic');
     Route::group(['prefix'=>'t/{topic_id}'], function(){

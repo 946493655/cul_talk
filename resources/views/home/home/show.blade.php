@@ -9,7 +9,12 @@
             <div class="showcate">
                 @if($topic==2)
                     <div class="bigcate">
-                        <a href="" title="显示所有有关图形软件的话题">{{$crumbTitles[$topic]}}</a>
+                        <a href="{{DOMAIN}}s/graph" title="显示所有有关图形软件的话题">
+                            {{$crumbTitles[$topic]}}</a>
+                    </div>
+                    <div class="bigcate">
+                        <a href="javascript:;" title="去添加一个分类" onclick="addCate(2)">
+                            添加分类</a>
                     </div>
                     @if(count($cates))
                         @foreach($cates as $cate)
@@ -27,7 +32,12 @@
                     @endif
                 @elseif($topic==3)
                     <div class="bigcate">
-                        <a href="" title="显示所有有关视频作品的话题">{{$crumbTitles[$topic]}}</a>
+                        <a href="{{DOMAIN}}s/video" title="显示所有有关视频作品的话题">
+                            {{$crumbTitles[$topic]}}</a>
+                    </div>
+                    <div class="bigcate">
+                        <a href="javascript:;" title="去添加一个分类" onclick="addCate(3)">
+                            添加分类</a>
                     </div>
                     <ul>
                         @if(count($cates))
@@ -39,7 +49,12 @@
                     </ul>
                 @elseif($topic==4)
                     <div class="bigcate">
-                        <a href="" title="显示所有有关网站制作的话题">{{$crumbTitles[$topic]}}</a>
+                        <a href="{{DOMAIN}}s/design" title="显示所有有关网站制作的话题">
+                            {{$crumbTitles[$topic]}}</a>
+                    </div>
+                    <div class="bigcate">
+                        <a href="javascript:;" title="去添加一个分类" onclick="addCate(4)">
+                            添加分类</a>
                     </div>
                     @if(count($cates))
                         @foreach($cates as $cate)
@@ -58,10 +73,12 @@
                     @endif
                 @elseif($topic==1)
                     <div class="bigcate">
-                        <a href="" title="显示所有有关自定义的话题">{{$crumbTitles[$topic]}}</a>
+                        <a href="{{DOMAIN}}s/free" title="显示所有有关自定义的话题">
+                            {{$crumbTitles[$topic]}}</a>
                     </div>
                     <div class="bigcate">
-                        <a href="" title="去添加一个分类">添加分类</a>
+                        <a href="javascript:;" title="去添加一个分类" onclick="addCate(1)">
+                            添加分类</a>
                     </div>
                     <ul>
                         <li>??</li>
@@ -74,10 +91,11 @@
                     </ul>
                 @elseif($topic==5)
                     <div class="bigcate">
-                        <a href="" title="显示所有有关人生足迹的话题">{{$crumbTitles[$topic]}}</a>
+                        <a href="{{DOMAIN}}s/track" title="显示所有有关人生足迹的话题">{{$crumbTitles[$topic]}}</a>
                     </div>
                     <div class="bigcate">
-                        <a href="" title="去添加一个分类">添加分类</a>
+                        <a href="javascript:;" title="去添加一个分类" onclick="addCate(5)">
+                            添加分类</a>
                     </div>
                     <ul>
                         @if(count($cates))
@@ -125,4 +143,6 @@
             @include('home.layout.page')
         </div>
     </div>
+
+    @include('home.home.cate')
 @stop

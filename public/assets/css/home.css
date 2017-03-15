@@ -2,6 +2,7 @@
 
 
 body { margin:0;font-family:'微软雅黑'; }
+img { border:0; }
 
 
 /**
@@ -48,14 +49,16 @@ body { margin:0;font-family:'微软雅黑'; }
     margin-left:10px;
     color:#e6e6e6;
     font-size:20px;
+    text-decoration:none;
     position:absolute; top:40px;
 }
 #fabu {
     margin-top:10px;
+    position:absolute; left:920px;
     float:right;
 }
 #fabu a {
-    padding:5px 50px;
+    padding:10px 50px;
     background:#ff4466;
     color:#ffffff;
     text-decoration:none;
@@ -156,6 +159,7 @@ body { margin:0;font-family:'微软雅黑'; }
     overflow:hidden;
 }
 #contain_center .showcate .bigcate {
+    margin-right:1px;
     padding:5px 10px;
     width:100px;
     text-align:center;
