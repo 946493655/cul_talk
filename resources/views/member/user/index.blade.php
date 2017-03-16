@@ -21,11 +21,11 @@
                     <tr>
                         <td>我的专栏：{{count($topics)}} <a href="">查看</a></td>
                         <td>我的类别：{{count($cates)}} <a href="">查看</a></td>
-                        <td>我的话题：0</td>
+                        <td>我的话题：{{count($talks)}} <a href="">查看</a></td>
                     </tr>
                     <tr>
                         <td>我的评论：0</td>
-                        <td>我的奖励：0</td>
+                        <td colspan="2">我的积分：0 <a href="">获取记录</a> <a href="">交易记录</a></td>
                     </tr>
                 </table>
             </div>

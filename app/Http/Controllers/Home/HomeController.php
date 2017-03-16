@@ -66,7 +66,7 @@ class HomeController extends BaseController
             'crumbs' => $this->getCateParent($cate),
             'crumbTitles' => $this->crumbTitles,
             'topic' =>  $topic,
-//            'cate' => $cate,
+            'cate_curr' => $cate,
         ];
         return view('home.home.show', $result);
     }
@@ -76,7 +76,7 @@ class HomeController extends BaseController
      */
     public function getCates($limit,$topic)
     {
-        $apiCate = ApiCate::index($limit,1,$topic,0);
+        $apiCate = ApiCate::getParent($limit,$topic);
         return $apiCate['code']==0 ? $apiCate['data'] : [];
     }
 

@@ -20,12 +20,14 @@
                         @foreach($cates as $cate)
                             <ul>
                                 <li>{{$cate['name']}}：</li>
-                                <li><a href="">123</a></li>
                                 @if(count($cate['child']))
                                     @foreach($cate['child'] as $cate2)
-                                        <li><a href="">{{$cate2['name']}}</a></li>
-                                        <li><a href="">{{$cate2['name']}}</a></li>
+                                        <li><a href="{{DOMAIN}}s/graph/{{$cate2['id']}}/talk"
+                                               class="{{$cate_curr==$cate2['id']?'curr':''}}"
+                                               title="显示{{$cate2['name']}}的话题">{{$cate2['name']}}</a></li>
                                     @endforeach
+                                @else
+                                    <li><a href="javascript:;">待添加</a></li>
                                 @endif
                             </ul>
                         @endforeach
@@ -42,8 +44,9 @@
                     <ul>
                         @if(count($cates))
                             @foreach($cates as $cate)
-                                <li><a href="" title="显示{{$cate['name']}}的话题">
-                                        {{$cate['name']}}</a></li>
+                                <li><a href="{{DOMAIN}}t/{{$topic}}/{{$cate['id']}}/talk"
+                                       class="{{$cate_curr==$cate['id']?'curr':''}}"
+                                       title="显示{{$cate['name']}}的话题">{{$cate['name']}}</a></li>
                             @endforeach
                         @endif
                     </ul>
@@ -60,13 +63,14 @@
                         @foreach($cates as $cate)
                             <ul>
                                 <li>{{$cate['name']}}：</li>
-                                <li><a href="">123</a></li>
-                                <li><a href="">123</a></li>
                                 @if(count($cate['child']))
                                     @foreach($cate['child'] as $cate2)
-                                        <li><a href="">{{$cate2['name']}}</a></li>
-                                        <li><a href="">{{$cate2['name']}}</a></li>
+                                        <li><a href="{{DOMAIN}}t/{{$topic}}/{{$cate2['id']}}/talk"
+                                               class="{{$cate_curr==$cate2['id']?'curr':''}}"
+                                               title="显示{{$cate2['name']}}的话题">{{$cate2['name']}}</a></li>
                                     @endforeach
+                                @else
+                                    <li><a href="javascript:;">待添加</a></li>
                                 @endif
                             </ul>
                         @endforeach
@@ -81,12 +85,14 @@
                             添加分类</a>
                     </div>
                     <ul>
-                        <li>??</li>
                         @if(count($cates))
                             @foreach($cates as $cate)
-                                <li><a href="" title="显示{{$cate['name']}}的话题">
-                                        {{$cate['name']}}</a></li>
+                                <li><a href="{{DOMAIN}}t/{{$topic}}/{{$cate2['id']}}/talk"
+                                       class="{{$cate_curr==$cate2['id']?'curr':''}}"
+                                       title="显示{{$cate2['name']}}的话题">{{$cate['name']}}</a></li>
                             @endforeach
+                        @else
+                            <li>待添加</li>
                         @endif
                     </ul>
                 @elseif($topic==5)
@@ -100,8 +106,9 @@
                     <ul>
                         @if(count($cates))
                             @foreach($cates as $cate)
-                                <li><a href="" title="显示{{$cate['name']}}的话题">
-                                        {{$cate['name']}}</a></li>
+                                <li><a href="{{DOMAIN}}t/{{$topic}}/{{$cate['id']}}/talk"
+                                       class="{{$cate_curr==$cate['id']?'curr':''}}"
+                                       title="显示{{$cate['name']}}的话题">{{$cate['name']}}</a></li>
                             @endforeach
                         @endif
                     </ul>
@@ -111,8 +118,12 @@
             {{--话题列表--}}
             <div class="list">
                 <p class="crumb">
-                    {{$crumbTitles[$topic]}} > {{$crumbs?$crumbs['name']:'所有'}}
-                    @if($crumbs&&$parent=$crumbs['parent'])> {{$parent['name']}}@endif
+                    {{$crumbTitles[$topic]}}
+                    @if($crumbs&&$parent=$crumbs['parent'])
+                        {{is_array($parent)?'> '.$parent['name']:''}}
+                        > {{$crumbs['name']}}
+                    @else > 所有
+                    @endif
                 </p>
                 <table>
                     <tr><td colspan="10" class="xian"></td></tr>
@@ -120,15 +131,15 @@
                         @foreach($datas as $data)
                     <tr>
                         <td class="img"><a href=""><img src=""></a></td>
-                        <td width="600"><a href="">
-                            <p class="tname">{{$data['name']}}</p>
-                            <p>{{str_limit($data['intro'],100)}}</p>
-                            </a></td>
-                        <td width="50">
-                            <p><a href="javascript:;">{{$data['read']}} / 0</a></p>
-                            <p>
-                                <a href="javascript:;">回复</a>
-                            </p>
+                        <td width="600">
+                            <a href="{{DOMAIN}}t/{{$topic}}/talk/{{$data['id']}}">
+                                <p class="tname">{{$data['name']}}</p>
+                                <p class="intro">{{str_limit($data['intro'],100)}}</p>
+                            </a>
+                        </td>
+                        <td width="100">
+                            <p><a href="javascript:;">{{$data['read']}} / 0 / 0</a></p>
+                            <p><a href="javascript:;">回复</a></p>
                         </td>
                         <td width="100">
                             <p>{{UserNameById($data['uid'])}}</p>

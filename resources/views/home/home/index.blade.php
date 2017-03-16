@@ -32,16 +32,26 @@
                     </div>
                     @if($cates=CateByTopicid(3,$topic['id']))
                         @foreach($cates as $cate)
-                        <div class="cate"><a href="">{{$cate['name']}}</a></div>
+                        <div class="cate">
+                            <a href="
+                            @if($topic['id']==1) {{DOMAIN}}s/free/{{$cate['id']}}/talk
+                            @elseif($topic['id']==2) {{DOMAIN}}s/graph/{{$cate['id']}}/talk
+                            @elseif($topic['id']==3) {{DOMAIN}}s/video/{{$cate['id']}}/talk
+                            @elseif($topic['id']==4) {{DOMAIN}}s/design/{{$cate['id']}}/talk
+                            @elseif($topic['id']==5) {{DOMAIN}}s/track/{{$cate['id']}}/talk
+                            @else {{DOMAIN}}s/{{$topic['id']}}/{{$cate['id']}}/talk
+                            @endif
+                                ">{{$cate['name']}}</a></div>
                         @endforeach
                     @endif
                 </div>
                 <div class="dashed"></div>
                 {{--二级类别--}}
-                @if($topic['id']==2)
-                <div class="nav" style="height:50px;">
+                @if($topic['id']==2 && CatesByLevel($topic['id'],2))
+                <div class="nav">
                     @foreach(CatesByLevel($topic['id'],2) as $cate)
-                    <div class="cate"><a href="">{{$cate['name']}}</a></div>
+                    <div class="cate"><a href="{{DOMAIN}}s/graph/{{$cate['id']}}/talk">
+                            {{$cate['name']}}</a></div>
                     @endforeach
                     <div class="cate"><a href="">子类测试</a></div>
                 </div>
@@ -51,7 +61,8 @@
                 <div class="cont" @if($topic['id']==2)style="height:100px;"@endif>
                     @if($talks=TalkByTopicid(3,$topic['id']))
                         @foreach($talks as $talk)
-                            <div class="talk"><a href="">{{$talk['name']}}</a></div>
+                            <div class="talk"><a href="{{DOMAIN}}t/{{$topic['id']}}/talk/{{$talk['id']}}">
+                                    {{$talk['name']}}</a></div>
                         @endforeach
                     @endif
                     <div class="talk"><a href="">话题测试</a></div>

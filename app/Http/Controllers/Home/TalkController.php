@@ -23,7 +23,7 @@ class TalkController extends BaseController
      */
     public function getTopic()
     {
-        $apiTopic = ApiTopic::getTopicsByLimit(1000);
+        $apiTopic = ApiTopic::index(1000);
         if ($apiTopic['code']!=0) {
             echo "<script>alert('".$apiTopic['msg']."');history.go(-1);</script>";exit;
         }
@@ -63,8 +63,6 @@ class TalkController extends BaseController
         if ($apiTalk['code']!=0) {
             echo "<script>alert('".$apiTalk['msg']."');history.go(-1);</script>";exit;
         }
-        //去奖励
-        //??
         return redirect(DOMAIN);
     }
 
@@ -75,7 +73,7 @@ class TalkController extends BaseController
 
     public function getCates($topic)
     {
-        $apiCate = ApiCate::getCatesByLimit(1000,$topic);
+        $apiCate = ApiCate::getCatesByTopic($topic,2);
         return $apiCate['code']==0 ? $apiCate['data'] : [];
     }
 }

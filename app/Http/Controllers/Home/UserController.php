@@ -21,6 +21,7 @@ class userController extends BaseController
             'userInfo' => $userArr,
             'topics' => $this->getTopics(),
             'cates' => $this->getCates(),
+            'talks' => $this->getTalks(),
         ];
         return view('member.user.index', $result);
     }

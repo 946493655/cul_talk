@@ -38,6 +38,34 @@ img { border:0; }
 
 /**
  ***********************
+ * 头样式
+ */
+#foot {
+    width:100%;
+    background:#5a5a5a;
+    position:fixed; bottom:0;
+}
+#footer {
+    margin:10px auto;
+    width:1000px;
+    text-align:center;
+}
+#footer a {
+    color:#808080;
+    text-decoration:none;
+}
+#footer a:hover {
+    color:#ff4466;
+    text-decoration:none;
+}
+/**
+ * 头样式
+ ***********************
+ */
+
+
+/**
+ ***********************
  *
  */
 #top {
@@ -130,7 +158,10 @@ img { border:0; }
     /*color:#0e90d2;*/
     color:#ff4466;
 }
-.box .more { font-weight:normal;float:right; }
+.box .more {
+    font-weight:normal;
+    float:right;
+}
 .box .solid { border-bottom:1px solid #dcdcdc; }
 .box .dashed {
     padding:5px 0;
@@ -159,7 +190,7 @@ img { border:0; }
     overflow:hidden;
 }
 #contain_center .showcate .bigcate {
-    margin-right:1px;
+    margin-right:2px;
     padding:5px 10px;
     width:100px;
     text-align:center;
@@ -186,7 +217,7 @@ img { border:0; }
     text-decoration:none;
     font-size:15px;
 }
-#contain_center .showcate ul a:hover { color:#ff4466; }
+#contain_center .showcate ul a:hover,#contain_center .showcate ul a.curr { color:#ff4466; }
 /*前台showlist*/
 #contain_center .list {
     margin:15px 0;
@@ -205,13 +236,14 @@ img { border:0; }
     width:100%;
     height:60px;
 }
-#contain_center .list td { padding:10px 20px; }
+#contain_center .list td { padding:0 20px; }
 #contain_center .list td.tname {
     padding-bottom:10px;
     font-size:25px;
 }
 #contain_center .list td.img {
     width:100px; height:50px;
+    border:0;
     background:#f2f2f2;
     overflow:hidden;
 }
@@ -220,6 +252,8 @@ img { border:0; }
     border-top:1px solid #e5e5e5;
 }
 #contain_center .list table p { margin:0; }
+#contain_center .list table p.tname { font-size:25px; }
+#contain_center .list table p.intro { font-size:14px; }
 /**
  ***********************
  * 前台首页内容样式

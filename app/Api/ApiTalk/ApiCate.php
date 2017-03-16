@@ -75,6 +75,28 @@ class ApiCate
         );
     }
 
+    /**
+     * 通过 limit、topic 获取父类别
+     */
+    public static function getParent($limit,$topic_id)
+    {
+        $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate/parent';
+        $curl = new Curl();
+        $curl->setHeader('X-Authorization', ApiBase::getApiKey());
+        $curl->post($apiUrl, array(
+            'limit'     =>  $limit,
+            'topic_id'  =>  $topic_id,
+        ));
+        $response = json_decode($curl->response);
+        if ($response->error->code != 0) {
+            return array('code' => -1, 'msg' => $response->error->msg);
+        }
+        return array(
+            'code' => 0,
+            'data' => ApiBase::objToArr($response->data),
+        );
+    }
+
     public static function show($id)
     {
         $apiUrl = ApiBase::getApiCurl() . '/api/v1/cate/show';

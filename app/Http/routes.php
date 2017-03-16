@@ -33,11 +33,10 @@ Route::group(['prefix'=>'/','namespace'=>'Home'], function(){
     //首页、几个列表路由
     Route::get('/', 'HomeController@index');
     Route::get('s/{topic}', 'HomeController@show');         //s是代表检索
-    Route::get('s/{topic}/{cate}', 'HomeController@show');
+    Route::get('s/{topic}/{cate}/talk', 'HomeController@show');
     Route::resource('topic', 'TopicController');
     //类别路由
     Route::group(['prefix'=>'s/{topic_id}'], function(){
-        Route::post('cate/getcates', 'CateController@getCatesByTopic');
         Route::resource('cate', 'CateController');
     });
     //话题路由
