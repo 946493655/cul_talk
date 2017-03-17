@@ -50,7 +50,13 @@ Route::group(['prefix'=>'/','namespace'=>'Home'], function(){
 /**
  * 会员页面
  */
-Route::group(['prefix'=>'/','middleware' =>'MemberAuth','namespace'=>'Home'], function(){
+Route::group(['prefix'=>'account','middleware' =>'MemberAuth','namespace'=>'Home'], function(){
     //用户信息
-    Route::get('account', 'UserController@index');
+    Route::get('/', 'UserController@index');
+    Route::get('topic', 'UserController@getTopicList');
+    Route::get('cate', 'UserController@getCateList');
+    Route::get('talk', 'UserController@getTalkList');
+    Route::get('comment', 'UserController@getCommentList');
+    Route::get('award', 'UserController@getAwardList');
+    Route::get('integral', 'UserController@getIntegralList');
 });

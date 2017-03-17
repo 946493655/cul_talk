@@ -13,7 +13,8 @@
         <span class="right">
             <a href="javascript:;">帮助</a> &nbsp;
             <a href="{{env('WWW_DOMAIN')}}" target="_blank">主网站</a> &nbsp;
-            <a href="{{env('ONLINE_DOMAIN')}}" target="_blank">在线创作</a>
+            <a href="{{env('ONLINE_DOMAIN')}}" target="_blank">在线创作</a> &nbsp;
+            <a href="{{DOMAIN}}">首页</a>
         </span>
     </div>
 </div>

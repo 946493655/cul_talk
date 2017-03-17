@@ -1,6 +1,7 @@
 {{--底部脚模板--}}
 
 
+<div style="height:40px;"></div>
 <div id="foot">
     <div id="footer">
         <a href="{{DOMAIN}}">首页</a>

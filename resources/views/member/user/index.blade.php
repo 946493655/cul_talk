@@ -19,13 +19,16 @@
                         <td>公司名：{{$userInfo['company']?$userInfo['company']['name']:'未知'}}</td>
                     </tr>
                     <tr>
-                        <td>我的专栏：{{count($topics)}} <a href="">查看</a></td>
-                        <td>我的类别：{{count($cates)}} <a href="">查看</a></td>
-                        <td>我的话题：{{count($talks)}} <a href="">查看</a></td>
+                        <td>我的专栏：<a href="{{DOMAIN}}account/topic">{{count($topics)}} 查看</a></td>
+                        <td>我的类别：<a href="{{DOMAIN}}account/cate">{{count($cates)}} 查看</a></td>
+                        <td>我的话题：<a href="{{DOMAIN}}account/talk">{{count($talks)}} 查看</a></td>
                     </tr>
                     <tr>
-                        <td>我的评论：0</td>
-                        <td colspan="2">我的积分：0 <a href="">获取记录</a> <a href="">交易记录</a></td>
+                        <td>我的评论：<a href="{{DOMAIN}}account/comment">{{count($comments)}} 查看</a></td>
+                        <td colspan="2">我的积分：{{$param['integral']}}
+                            <a href="{{DOMAIN}}account/award">奖励记录</a>
+                            <a href="{{DOMAIN}}account/integral">交易记录</a>
+                        </td>
                     </tr>
                 </table>
             </div>

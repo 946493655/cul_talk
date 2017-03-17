@@ -24,11 +24,10 @@ class Controller extends BaseController
     /**
      * 接口分页处理
      */
-    public function getPageList($datas,$prefix_url,$limit,$pageCurr=1)
+    public function getPageList($total,$prefix_url,$limit,$pageCurr=1)
     {
         $currentPage = $pageCurr;                               //当前页
         $lastPage = ($pageCurr - 1) ? ($pageCurr - 1) : 1;      //上一页
-        $total = count($datas);                                 //总记录数
         //上一页路由
         if ($pageCurr<=1) {
             $previousPageUrl = $prefix_url;
@@ -36,9 +35,9 @@ class Controller extends BaseController
             $previousPageUrl = $prefix_url.'?page='.($pageCurr-1);
         }
         //下一页路由
-        if (count($datas) <= $limit) {
+        if ($total <= $limit) {
             $nextPageUrl = $prefix_url;
-        } elseif ($pageCurr * $limit >= count($datas)) {
+        } elseif ($pageCurr * $limit >= $total) {
             $nextPageUrl = $prefix_url.'?page='.$pageCurr;
         } else {
             $nextPageUrl = $prefix_url.'?page='.($pageCurr+1);
