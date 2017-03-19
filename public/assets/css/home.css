@@ -244,6 +244,7 @@ img { border:0; }
 #contain_center .list td.img {
     width:100px; height:50px;
     border:0;
+    color:#808080;
     background:#f2f2f2;
     overflow:hidden;
 }
@@ -254,6 +255,25 @@ img { border:0; }
 #contain_center .list table p { margin:0; }
 #contain_center .list table p.tname { font-size:25px; }
 #contain_center .list table p.intro { font-size:14px; }
+/*话题详情页*/
+#homeshow {
+    padding:10px;
+    background:#ffffff;
+}
+#homeshow .time {  }
+#homeshow .time .small {
+    color:#cccccc;
+    font-size:14px;
+}
+#homeshow .title {
+    text-align:center;
+    font-size:30px;
+}
+#homeshow .img {  }
+#homeshow .con {
+    text-indent:2em;
+    color:#808080;
+}
 /**
  ***********************
  * 前台首页内容样式
@@ -341,8 +361,69 @@ img { border:0; }
     width:800px;
     color:#808080;
 }
-#userlist td { padding:10px 0; }
+#userlist th {
+    padding:10px 0;
+    border-bottom:1px dashed #cccccc;
+}
+#userlist td {
+    padding:10px 0;
+    text-align:center;
+}
+#userlist td.return { width:100px; }
+#userlist select {
+    padding:5px 10px;
+    border:1px solid #cccccc;
+    color:#808080;
+}
 /**
  ***********************
  * 用户页面样式
+ */
+
+
+/**
+ * 弹出框样式
+ ***********************
+ */
+.popup { display:none; }
+.popup .mask {
+    width:100%; height:100%;
+    background:#000000;
+    filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5;
+    position:fixed; top:0;
+}
+.popup form {
+    padding:20px; width:800px;
+    color:#808080;
+    background:#ffffff;;
+    position:fixed; top:100px; left:20%;
+}
+.popup form h4 { margin:5px;text-align:center; }
+.popup form input,.popup form textarea,.popup form select {
+    margin:5px 0;
+    padding:10px;
+    width:770px;
+    border:1px solid #cccccc;
+    color:#808080;
+}
+.popup form textarea {
+    height:100px;
+    resize:none;
+}
+.popup form .close {
+    padding:10px 20px;
+    color:gainsboro;
+    background:orangered;
+    text-decoration:none;
+    position:absolute; top:0; left:840px;
+}
+.popup form input[type='submit'] {
+    color:#ffffff;
+    background:#5a5a5a;
+    cursor:pointer;
+}
+.popup form a:hover.close { color:#ffffff; }
+/**
+ ***********************
+ * 弹出框样式
  */

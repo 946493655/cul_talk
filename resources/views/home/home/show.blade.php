@@ -130,7 +130,12 @@
                     @if(count($datas))
                         @foreach($datas as $data)
                     <tr>
-                        <td class="img"><a href=""><img src=""></a></td>
+                        <td class="img">
+                            @if($data['thumb'])
+                            <a href=""><img src="{{$thumb}}" width="100"></a>
+                            @else 无
+                            @endif
+                        </td>
                         <td width="600">
                             <a href="{{DOMAIN}}t/{{$topic}}/talk/{{$data['id']}}">
                                 <p class="tname">{{$data['name']}}</p>
@@ -138,10 +143,10 @@
                             </a>
                         </td>
                         <td width="100">
-                            <p><a href="javascript:;">{{$data['read']}} / 0 / 0</a></p>
-                            <p><a href="javascript:;">回复</a></p>
+                            <p style="font-size:12px;"><a href="javascript:;">{{$data['read']}} / 0 / 赏{{$data['integral']}}</a></p>
+                            <p><a href="{{DOMAIN}}t/{{$topic}}/talk/{{$data['id']}}" title="点击查看详情或回复内容">详情/回复</a></p>
                         </td>
-                        <td width="100">
+                        <td width="120">
                             <p>{{UserNameById($data['uid'])}}</p>
                             <p style="font-size:12px;">{{$data['createTime']}}</p>
                         </td>
@@ -154,6 +159,7 @@
             @include('home.layout.page')
         </div>
     </div>
+    <input type="hidden" name="uid" value="{{Session::has('user')?Session::get('user.uid'):0}}">
 
     @include('home.home.cate')
 @stop

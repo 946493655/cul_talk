@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -7,6 +6,10 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+use App\Api\ApiTalk\ApiTopic;
+use Illuminate\Support\Facades\View;
+use Session;
+use Redis;
 
 class Controller extends BaseController
 {
@@ -19,6 +22,46 @@ class Controller extends BaseController
     {
         define('DOMAIN',env('DOMAIN'));
         define('PUB',env('PUB'));
+        View::share('navs',$this->getNavigates());      //共享菜单数据
+        $this->setSessionInRedis($this->redisTime);     //同步缓存中session
+    }
+
+    /**
+     * 前台横向菜单栏共享数据
+     */
+    public function getNavigates()
+    {
+        $apiNav = ApiTopic::index(5);
+        return $apiNav['code']==0 ? $apiNav['data'] : [];
+    }
+
+    /**
+     * 判断session、缓存
+     */
+    public function setSessionInRedis($redisTime)
+    {
+        //假如session中有，缓存中没有，则同步为有
+        if (Session::get('user') && !Redis::get('cul_session')) {
+            $userInfo = Session::get('user');
+            $userInfo['cookie'] = $_COOKIE;
+            Redis::setex('cul_session',$redisTime,serialize($userInfo));
+        }
+        //假如session中没有，缓存中有，则同步为有
+        if (!Session::get('user') && Redis::get('cul_session')) {
+            $cul_session = unserialize(Redis::get('cul_session'));
+            $cul_session['cookie'] = $_COOKIE;
+            if ($cul_session['cookie']['laravel_session']!=$_COOKIE['laravel_session']) {
+                echo 'no';exit;
+            }
+            Session::put('user',$cul_session);
+        }
+        //更新session中的cookie值
+        if (Session::get('user')) {
+            $cul_session = Session::get('user');
+            $cul_session['cookie'] = $_COOKIE;
+            Redis::setex('cul_session',$redisTime,serialize($cul_session));
+            Session::put('user',$cul_session);
+        }
     }
 
     /**

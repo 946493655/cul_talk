@@ -42,15 +42,6 @@
         var uid = $("input[name='uid']").val();
         if (uid==0) { alert('没有登录！');return; }
         $("#formcate").attr('action','{{DOMAIN}}s/'+topic+'/cate');
-        /*$.ajax({
-            type: "POST",
-            url: "/s/"+topic+'/cate/getcates',
-            data: {'topic':topic},
-            dataType: "json",
-            success: function(data){
-                if (data.code!=0) { alert(data.msg);return; }
-            }
-        });*/
         if (topic==2) {
             var html = "类别选项：";
             html += "<select name='pid' required>";

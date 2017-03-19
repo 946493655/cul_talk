@@ -8,24 +8,29 @@
             <div id="userlist">
                 <table>
                     <tr>
-                        <td colspan="10" style="text-align:center;"><h3>用户话题列表</h3></td>
+                        <td colspan="10" style="text-align:center;"><h3>用户积分奖励类别</h3></td>
                     </tr>
                     <tr>
-                        <td><a href="javascript:;" onclick="history.go(-1);" title="点击返回上一页">←返回</a></td>
+                        <td class="return"><a href="{{DOMAIN}}member">←返回</a></td>
                     </tr>
                     <tr>
-                        <td>用户</td>
-                        <td>话题名称</td>
-                        <td>创建时间</td>
+                        <th>话题名称</th>
+                        <th>话题主人</th>
+                        <th>回复人</th>
+                        <th>积分</th>
+                        <th>创建时间</th>
                     </tr>
                     @if(count($datas))
                         @foreach($datas as $data)
                         <tr>
+                            <td>{{$data['talkName']}}</td>
                             <td>{{UserNameById($data['uid'])}}</td>
-                            <td>{{$data['name']}}</td>
+                            <td>{{UserNameById($data['uid2'])}}</td>
+                            <td>{{$data['number']}}</td>
                             <td>{{$data['createTime']}}</td>
                         </tr>
                         @endforeach
+                    @else <tr><td colspan="10" style="text-align:center;">没有记录</td></tr>
                     @endif
                 </table>
                 @include('home.layout.page')

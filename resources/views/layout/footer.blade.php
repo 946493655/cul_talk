@@ -9,3 +9,5 @@
         <a href="{{env('ONLINE_DOMAIN')}}">创作中心</a>
     </div>
 </div>
+
+@include('layout.qqchat')

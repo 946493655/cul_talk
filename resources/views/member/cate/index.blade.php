@@ -11,12 +11,14 @@
                         <td colspan="10" style="text-align:center;"><h3>用户专栏列表</h3></td>
                     </tr>
                     <tr>
-                        <td><a href="javascript:;" onclick="history.go(-1);" title="点击返回上一页">←返回</a></td>
+                        <td class="return">
+                            <a href="{{DOMAIN}}member">←返回</a>
+                        </td>
                     </tr>
                     <tr>
-                        <td>用户</td>
-                        <td>类别名称</td>
-                        <td>创建时间</td>
+                        <th>用户</th>
+                        <th>类别名称</th>
+                        <th>创建时间</th>
                     </tr>
                     @if(count($datas))
                         @foreach($datas as $data)
@@ -26,6 +28,7 @@
                             <td>{{$data['createTime']}}</td>
                         </tr>
                         @endforeach
+                    @else <tr><td colspan="10" style="text-align:center;">没有记录</td></tr>
                     @endif
                 </table>
                 @include('home.layout.page')

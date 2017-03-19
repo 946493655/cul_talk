@@ -1,12 +1,12 @@
 <?php
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 
 class BaseController extends Controller
 {
     /**
-     * 前台基础控制器
+     * 会员基础控制器
      */
 
     public function __construct()

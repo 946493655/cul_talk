@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Api\ApiTalk\ApiCate;
+use App\Api\ApiTalk\ApiComment;
 use App\Api\ApiTalk\ApiTalk;
 use App\Api\ApiTalk\ApiTopic;
 use App\Api\ApiUser\ApiWallet;
@@ -64,7 +65,31 @@ class TalkController extends BaseController
         if ($apiTalk['code']!=0) {
             echo "<script>alert('".$apiTalk['msg']."');history.go(-1);</script>";exit;
         }
-        return redirect(DOMAIN);
+        return redirect(DOMAIN.'accout/talk');
+    }
+
+    public function show($topic,$id)
+    {
+        $apiTalk = ApiTalk::show($id);
+        if ($apiTalk['code']!=0) {
+            echo "<script>alert('".$apiTalk['msg']."');history.go(-1);</script>";exit;
+        }
+        $pageCurr = isset($_GET['pageCurr']) ? $_GET['pageCurr'] : 1;
+        $prefix_url = DOMAIN.'t/'.$topic.'/talk/'.$id;
+        $apiComment = ApiComment::index($this->limit,$pageCurr,$id,0);
+        if ($apiComment['code']!=0) {
+            $comments = array(); $total = 0;
+        } else {
+            $comments = $apiComment['data']; $total = $apiComment['pagelist']['total'];
+        }
+        $pagelist = $this->getPageList($total,$prefix_url,$this->limit,$pageCurr);
+        $result = [
+            'data'  =>  $apiTalk['data'],
+            'comments'      =>  $comments,
+            'prefix_url'    =>  $prefix_url,
+            'pagelist'      =>  $pagelist,
+        ];
+        return view('home.talk.show', $result);
     }
 
 

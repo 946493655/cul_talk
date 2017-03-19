@@ -50,13 +50,23 @@ Route::group(['prefix'=>'/','namespace'=>'Home'], function(){
 /**
  * 会员页面
  */
-Route::group(['prefix'=>'account','middleware' =>'MemberAuth','namespace'=>'Home'], function(){
+Route::group(['prefix'=>'member','middleware' =>'MemberAuth','namespace'=>'Member'], function(){
     //用户信息
     Route::get('/', 'UserController@index');
-    Route::get('topic', 'UserController@getTopicList');
-    Route::get('cate', 'UserController@getCateList');
-    Route::get('talk', 'UserController@getTalkList');
-    Route::get('comment', 'UserController@getCommentList');
-    Route::get('award', 'UserController@getAwardList');
-    Route::get('integral', 'UserController@getIntegralList');
+    //专栏路由
+    Route::resource('topic', 'TopicController');
+    //类别路由
+    Route::resource('cate', 'CateController');
+    //类别路由
+    Route::resource('talk', 'TalkController');
+    //评论路由
+    Route::resource('comment', 'CommentController');
+    //奖励记录路由
+    Route::resource('award', 'AwardController');
+    //积分路由
+    Route::resource('integral', 'IntegralController');
+    //回复路由
+    Route::get('t/{talkid}/reply', 'ReplyController@index');
+    Route::get('reply/getUser/{talkid}/{uid}', 'ReplyController@getUser');
+    Route::resource('reply', 'ReplyController');
 });
