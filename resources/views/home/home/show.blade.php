@@ -143,7 +143,9 @@
                             </a>
                         </td>
                         <td width="100">
-                            <p style="font-size:12px;"><a href="javascript:;">{{$data['read']}} / 0 / 赏{{$data['integral']}}</a></p>
+                            <p style="font-size:12px;"><a href="javascript:;">
+                                    {{$data['read']}} / 0 / 赏{{$data['integral']}}
+                                </a></p>
                             <p><a href="{{DOMAIN}}t/{{$topic}}/talk/{{$data['id']}}" title="点击查看详情或回复内容">详情/回复</a></p>
                         </td>
                         <td width="120">

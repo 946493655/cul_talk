@@ -2,7 +2,7 @@
 
 
 <style>
-    .qqchat { margin:20px;padding:10px 20px;width:120px;color:black;
+    .qqchat { margin:20px;padding:10px 20px;width:140px;color:black;
         position:fixed;right:60px;bottom:150px; }
     .qqchat #bg { width:140px;height:150px;background:#c8c8c8;filter:alpha(opacity=40);-moz-opacity:0.4;opacity:0.4;
         position:absolute;z-index:-1; }

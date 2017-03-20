@@ -236,7 +236,10 @@ img { border:0; }
     width:100%;
     height:60px;
 }
-#contain_center .list td { padding:0 20px; }
+#contain_center .list td {
+    padding:0 20px;
+    border-bottom:1px dashed #e5e5e5;
+}
 #contain_center .list td.tname {
     padding-bottom:10px;
     font-size:25px;
@@ -248,7 +251,22 @@ img { border:0; }
     background:#f2f2f2;
     overflow:hidden;
 }
-#contain_center .list td.xian {
+#contain_center .list td#huifu { width:920px; }
+#contain_center .list td#huifu textarea {
+    padding:5px;
+    width:840px; height:50px;
+    border:1px solid #e5e5e5;
+    font-size:18px;
+    font-family:'微软雅黑';
+    resize:none;
+}
+#contain_center .list td#huifu a {
+    color:#ff4466;
+    font-size:20px;
+    position:relative; top:-10px;
+}
+#contain_center .list td#huifu a:hover { color:#e34220; }
+#contain_center .list .xian {
     padding-bottom:10px;
     border-top:1px solid #e5e5e5;
 }
@@ -375,6 +393,7 @@ img { border:0; }
     border:1px solid #cccccc;
     color:#808080;
 }
+#userlist a.curr { color:#ff4466; }
 /**
  ***********************
  * 用户页面样式

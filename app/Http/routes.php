@@ -65,8 +65,10 @@ Route::group(['prefix'=>'member','middleware' =>'MemberAuth','namespace'=>'Membe
     Route::resource('award', 'AwardController');
     //积分路由
     Route::resource('integral', 'IntegralController');
+    Route::resource('integral/s/{genre}', 'IntegralController@index');      //s代表检索
     //回复路由
+    Route::get('reply/add', 'ReplyController@addReply');
     Route::get('t/{talkid}/reply', 'ReplyController@index');
-    Route::get('reply/getUser/{talkid}/{uid}', 'ReplyController@getUser');
+    Route::get('reply/getuser/{talkid}/{uid}', 'ReplyController@getUser');
     Route::resource('reply', 'ReplyController');
 });

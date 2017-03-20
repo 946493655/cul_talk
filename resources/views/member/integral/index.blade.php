@@ -12,6 +12,10 @@
                     </tr>
                     <tr>
                         <td class="return"><a href="{{DOMAIN}}member">←返回</a></td>
+                        <td colspan="10">
+                            <a href="{{DOMAIN}}member/integral" class="{{$genre==1?'curr':''}}">积分支出</a> &nbsp;&nbsp;
+                            <a href="{{DOMAIN}}member/integral/s/2" class="{{$genre==2?'curr':''}}">积分收入</a>
+                        </td>
                     </tr>
                     <tr>
                         <th>话题名称</th>

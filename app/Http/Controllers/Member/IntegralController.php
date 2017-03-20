@@ -29,6 +29,7 @@ class IntegralController extends BaseController
             'datas'     =>  $datas,
             'pagelist'  =>  $pagelist,
             'prefix_url'  =>  $prefix_url,
+            'genre'     =>  $genre,
         ];
         return view('member.integral.index', $result);
     }

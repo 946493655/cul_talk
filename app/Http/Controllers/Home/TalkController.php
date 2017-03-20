@@ -88,6 +88,7 @@ class TalkController extends BaseController
             'comments'      =>  $comments,
             'prefix_url'    =>  $prefix_url,
             'pagelist'      =>  $pagelist,
+            'topic_id'      =>  $topic,
         ];
         return view('home.talk.show', $result);
     }
