@@ -58,14 +58,18 @@ Route::group(['prefix'=>'member','middleware' =>'MemberAuth','namespace'=>'Membe
     //类别路由
     Route::resource('cate', 'CateController');
     //类别路由
+    Route::post('talk/thumb/{id}', 'TalkController@setThumb');
+    Route::post('talk/praise', 'TalkController@setPraise');
+    Route::get('talk/click', 'TalkController@getClickList');
+    Route::get('talk/click/s/{talkid}', 'TalkController@getClickList');
     Route::resource('talk', 'TalkController');
     //评论路由
     Route::resource('comment', 'CommentController');
     //奖励记录路由
     Route::resource('award', 'AwardController');
     //积分路由
+    Route::get('integral/s/{genre}', 'IntegralController@index');      //s代表检索
     Route::resource('integral', 'IntegralController');
-    Route::resource('integral/s/{genre}', 'IntegralController@index');      //s代表检索
     //回复路由
     Route::get('reply/add', 'ReplyController@addReply');
     Route::get('t/{talkid}/reply', 'ReplyController@index');

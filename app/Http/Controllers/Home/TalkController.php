@@ -5,7 +5,6 @@ use App\Api\ApiTalk\ApiCate;
 use App\Api\ApiTalk\ApiComment;
 use App\Api\ApiTalk\ApiTalk;
 use App\Api\ApiTalk\ApiTopic;
-use App\Api\ApiUser\ApiWallet;
 use Session;
 use Illuminate\Http\Request;
 

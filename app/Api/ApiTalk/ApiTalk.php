@@ -81,4 +81,23 @@ class ApiTalk
             'msg' => $response->error->msg,
         );
     }
+
+    /**
+     * 设置缩略图
+     */
+    public static function setThumb($data)
+    {
+        $apiUrl = ApiBase::getApiCurl() . '/api/v1/talk/setthumb';
+        $curl = new Curl();
+        $curl->setHeader('X-Authorization', ApiBase::getApiKey());
+        $curl->post($apiUrl, $data);
+        $response = json_decode($curl->response);
+        if ($response->error->code != 0) {
+            return array('code' => -1, 'msg' => $response->error->msg);
+        }
+        return array(
+            'code' => 0,
+            'msg' => $response->error->msg,
+        );
+    }
 }

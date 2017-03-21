@@ -3,7 +3,7 @@
     @include('home.layout.top')
     @include('home.layout.navigate')
     <div id="contain">
-        <div id="contain_center" style="width:1000px">
+        <div id="contain_center">
             <div style="height:15px;"></div>
             <div id="homeshow">
                 <div class="time">
@@ -17,8 +17,14 @@
                 <div class="img"><img src="{{$data['thumb']}}" border="0"></div>
                 @endif
                 <div class="con">{{$data['intro']}}</div>
+                <p style="text-align:center;">
+                    <a href="javascript:;" onclick="getPraise({{$data['id']}})">
+                        <img src="{{PUB}}assets/images/dianzan.png" width="20"> 点赞
+                        <span id="dianzan">{{count($data['clickNum'])}}</span>
+                    </a>
+                </p>
             </div>
-            {{--话题列表--}}
+            {{--回复列表--}}
             <div class="list">
                 <p class="crumb">该话题的回复：</p>
                 <div class="xian"></div>
@@ -46,6 +52,8 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="_token" value="{{csrf_token()}}">
+    <input type="hidden" name="uid" value="{{Session::has('user')?Session::get('user.uid'):0}}">
 
     <script>
         function addReply(){
@@ -55,6 +63,24 @@
             if (talkid==0 && talkid==null) { alert("参数错误！");return; }
             if (reply=='') { alert("回复内容未填！");return; }
             window.location.href = '{{DOMAIN}}member/reply/add?topic_id='+topic_id+'&talkid='+talkid+'&reply='+reply;
+        }
+        function getPraise(talkid){
+            var uid = $("input[name='uid']").val();
+            var praise = $("#dianzan").html() * 1;
+            if (uid==0) { alert("未登录！");return; }
+            $.ajaxSetup({headers : {'X-CSRF-TOKEN':$('input[name="_token"]').val()}});
+            $.ajax({
+                type: 'POST',
+                url: '{{DOMAIN}}member/talk/praise',
+                data: {'id':talkid,'uid':uid},
+                dataType: 'json',
+                success: function(data) {
+                    if (data.code!=0) {
+                        alert(data.msg);return;
+                    }
+                    $("#dianzan").html(praise+1);
+                }
+            });
         }
     </script>
 @stop

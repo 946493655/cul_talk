@@ -10,6 +10,7 @@ use App\Api\ApiTalk\ApiTopic;
 use Illuminate\Support\Facades\View;
 use Session;
 use Redis;
+use Illuminate\Http\Request;
 
 class Controller extends BaseController
 {
@@ -17,6 +18,10 @@ class Controller extends BaseController
 
     protected $limit = 20;
     protected $redisTime = 60 * 60 * 2;       //session在redis中缓存时长，单位秒，默认2小时
+    protected $uploadSizeLimit = 1024 * 1023 * 1;       //限制上传大小1M
+    protected $suffix_img = [       //图片允许后缀
+        "png", "jpg", "gif", "bmp", "jpeg", "jpe",
+    ];
 
     public function __construct()
     {
@@ -137,5 +142,50 @@ class Controller extends BaseController
             $address = '未知';
         }
         return $address;
+    }
+
+    /**
+     * 上传方法，并处理文件
+     */
+    public function upload($file)
+    {
+        if($file->isValid()){
+            $allowed_extensions = $this->suffix_img;
+            if ($file->getClientOriginalExtension() &&
+                !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+                echo "<script>alert('你的图片格式不对！');history.go(-1);</script>";exit;
+            }
+            $extension       = $file->getClientOriginalExtension() ?: 'png';
+            $folderName      = '/uploads/images/'.date('Y-m-d', time()).'/';
+            $destinationPath = public_path().$folderName;
+            $safeName        = uniqid().'.'.$extension;
+            $file->move($destinationPath, $safeName);
+            $filePath = rtrim(DOMAIN,'/').$folderName.$safeName;
+            return $filePath;
+        } else {
+            return "没有图片！";
+        }
+    }
+
+    /**
+     * 只上传图片，返回图片地址
+     */
+    public function uploadOnlyImg(Request $request,$imgName='url_ori',$oldImgArr=[])
+    {
+        if($request->hasFile($imgName)){        //判断图片存在
+            //去除老图片
+            if ($oldImgArr) {
+                foreach ($oldImgArr as $oldImg) { unlink($oldImg); }
+            }
+            foreach ($_FILES as $img) {
+                if ($img['size'] > $this->uploadSizeLimit) {
+                    echo "<script>alert('上传的图片不能大于1M，请重新选择！');history.go(-1);</script>";exit;
+                }
+            }
+            $file = $request->file($imgName);           //获取图片
+            return $this->upload($file);
+        } else {
+            return '';
+        }
     }
 }

@@ -132,7 +132,8 @@
                     <tr>
                         <td class="img">
                             @if($data['thumb'])
-                            <a href=""><img src="{{$thumb}}" width="100"></a>
+                            <a href="{{DOMAIN}}t/{{$topic}}/talk/{{$data['id']}}">
+                                <img src="{{$data['thumb']}}" width="50"></a>
                             @else 无
                             @endif
                         </td>
