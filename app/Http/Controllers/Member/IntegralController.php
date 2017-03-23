@@ -16,7 +16,7 @@ class IntegralController extends BaseController
     public function index($genre=1)
     {
         $uid = Session::get('user.uid');
-        $pageCurr = isset($_GET['pageCurr']) ? $_GET['pageCurr'] : 1;
+        $pageCurr = isset($_GET['page']) ? $_GET['page'] : 1;
         $prefix_url = DOMAIN.'account/integral';
         $apiIntegral = ApiIntegral::index($this->limit,$pageCurr,0,$uid,$genre);
         if ($apiIntegral['code']!=0) {

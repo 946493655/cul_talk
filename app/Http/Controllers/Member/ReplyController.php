@@ -15,7 +15,7 @@ class ReplyController extends BaseController
     public function index($talkid=0)
     {
         $uid = Session::get('user.uid');
-        $pageCurr = isset($_GET['pageCurr']) ? $_GET['pageCurr'] : 1;
+        $pageCurr = isset($_GET['page']) ? $_GET['page'] : 1;
         $prefix_url = DOMAIN.'account/reply';
         $apiComment = ApiComment::index($this->limit,$pageCurr,$talkid,$uid);
         if ($apiComment['code']!=0) {

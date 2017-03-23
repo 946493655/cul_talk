@@ -19,7 +19,7 @@ class TalkController extends BaseController
      */
     public function index()
     {
-        $pageCurr = isset($_GET['pageCurr']) ? $_GET['pageCurr'] : 1;
+        $pageCurr = isset($_GET['page']) ? $_GET['page'] : 1;
         $prefix_url = DOMAIN.'account/talk';
         $apiTalk = ApiTalk::index($this->limit,$pageCurr,0,0,Session::get('user.uid'));
         if ($apiTalk['code']!=0) {

@@ -15,7 +15,7 @@ class TopicController extends BaseController
      */
     public function index()
     {
-        $pageCurr = isset($_GET['pageCurr']) ? $_GET['pageCurr'] : 1;
+        $pageCurr = isset($_GET['page']) ? $_GET['page'] : 1;
         $prefix_url = DOMAIN.'account/topic';
         $apiTopic = ApiTopic::index($this->limit,$pageCurr,Session::get('user.uid'));
         if ($apiTopic['code']!=0) {

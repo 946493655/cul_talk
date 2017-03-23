@@ -15,7 +15,7 @@ class CommentController extends BaseController
      */
     public function index()
     {
-        $pageCurr = isset($_GET['pageCurr']) ? $_GET['pageCurr'] : 1;
+        $pageCurr = isset($_GET['page']) ? $_GET['page'] : 1;
         $prefix_url = DOMAIN.'account/comment';
         $apiComment = ApiComment::index($this->limit,$pageCurr,0,Session::get('user.uid'));
         if ($apiComment['code']!=0) {
